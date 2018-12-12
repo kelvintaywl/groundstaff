@@ -10,7 +10,7 @@ class SETTINGS:
     URL = 'https://api.airtable.com/{version}/{user}/{base}'
     GRID_VIEW = 'Grid view'
     MAX_ITEMS = 200
-
+    USER_LOCALE = 'Asia/Tokyo'
 
 class AirTable:
 
@@ -29,7 +29,12 @@ class AirTable:
     
     def list(self, base, **kwargs):
         params = kwargs
-        params.update({ 'view': SETTINGS.GRID_VIEW })
+        params.update(
+            {
+                'view': SETTINGS.GRID_VIEW,
+                'userLocale': SETTINGS.USER_LOCALE
+            }
+        )
         response = requests.get(
             self.url(base=base),
             params,
